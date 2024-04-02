@@ -13,6 +13,8 @@ M.find_git_repos = function(find_cmd, base_dir)
     local res = {}
     for _i, value in ipairs(dirs) do
         local s, c = string.gsub(value, ".git/", "")
+        -- Remove './' from the beginning of the directory
+        s = string.gsub(s, "^%./", "")
         table.insert(res, base_dir .. s)
     end
     return res
